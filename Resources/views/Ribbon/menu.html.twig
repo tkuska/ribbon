@@ -1,0 +1,43 @@
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#ribbon').ribbon();
+    })
+</script>
+
+<div id="ribbon">
+    <span class="ribbon-window-title">{{ ribbon.name }}</span>
+    {% if ribbon.hasBackstage %}
+        <div class="ribbon-tab file" id="file-tab">
+            <span class="ribbon-title">{{ ribbon.backstage.name }}</span>
+            <div class="ribbon-backstage">
+                {{ ribbon.backstage.text }}<br/>
+                {% for button in ribbon.backstage.buttons %}
+                    <div data-parameters='{{ button.parameters|json_encode() }}' class="button big" data-action="{{ button.route }}">
+                        <img src="{{ button.image }}" alt="{{ button.label }}" />
+                        <span class="label">{{ button.label }}</span>
+                        <span class="desc">{{ button.description }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+    {% for tab in ribbon.tabs %}
+        <div class="ribbon-tab {% if tab.active == 1 %}sel{% endif %}" id="{{ tab.id }}" tab-index="{% if ribbon.hasBackstage %}{{ tab.index + 1 }}{% else %}{{ tab.index }}{% endif %}">
+            <span class="ribbon-title">{{ tab.name }}</span>
+            {% for section in tab.sections %}
+                <div class="ribbon-section">
+                    <span class="section-title">{{ section.name }}</span>
+                    {% for button in section.buttons %}
+                        <div data-parameters='{{ button.parameters|json_encode() }}' data-action="{{ button.route }}" class="ribbon-button ribbon-button-{{ button.type }} {{button.state}}" id="{{ button.id }}">
+                            <span class="button-title">{{ button.name }}</span>
+                            <span class="button-help">{{ button.help }}</span>
+                            <img class="ribbon-icon ribbon-normal" src="{{ button.image }}" />
+                            <img class="ribbon-icon ribbon-hot" src="{{ button.hot }}" />
+                            <img class="ribbon-icon ribbon-disabled" src="{{ button.disabled }}" />
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+</div>
