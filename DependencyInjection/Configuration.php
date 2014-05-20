@@ -22,7 +22,7 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->scalarNode('listener_class')->defaultValue('tkuska\RibbonBundle\Ribbon\Listener')->end()
+                ->scalarNode('listener_class')->defaultValue('tkuska\RibbonBundle\Listener\RibbonListener')->end()
                 ->scalarNode('extension_class')->defaultValue('tkuska\RibbonBundle\Twig\Extension\RibbonExtension')->end();
 
         // Here you should define the parameters that are allowed to

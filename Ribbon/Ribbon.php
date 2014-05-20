@@ -2,6 +2,9 @@
 
 namespace tkuska\RibbonBundle\Ribbon;
 
+use tkuska\RibbonBundle\Exception\TabAlreadyExistsException;
+use tkuska\RibbonBundle\Exception\TabNotFoundException;
+
 class Ribbon
 {
     private $name;
@@ -32,6 +35,10 @@ class Ribbon
      */
     public function addTab(Tab $tab)
     {
+        if($this->tabs[$tab->getId()]){
+            throw new TabAlreadyExistsException(sprintf('Tab "%s" already exists.', $tab->getId()));
+        }
+        
         $tab->setRibbon($this);
         $tab->setIndex(count($this->tabs));
         $this->tabs[$tab->getId()] = $tab;
@@ -49,6 +56,10 @@ class Ribbon
      */
     public function createTab($id, $name, array $options=array())
     {
+        if($this->tabs[$id]){
+            throw new TabAlreadyExistsException(sprintf('Tab "%s" already exists.', $id));
+        }
+        
         $tab =new Tab($id, $name, $options);
 
         $tab->setRibbon($this);
@@ -62,7 +73,6 @@ class Ribbon
      * 
      * @param  string                             $name
      * @param  array                              $options
-     * @deprecated Use setBackstage()->createButton() instead
      * @return \tkuska\RibbonBundle\Ribbon\Ribbon
      */
     public function addBackstageButton($name, array $options=array())
@@ -84,7 +94,7 @@ class Ribbon
     public function setActiveTab($id)
     {
         if(!$this->tabs[$id]){
-            throw new Exception(sprintf('Cannot find tab "%s"', $id));
+            throw new TabNotFoundException(sprintf('Cannot find tab "%s"', $id));
         }
         $this->tabs[$id]->setActive();
 
@@ -92,12 +102,25 @@ class Ribbon
     }
 
     /**
-     *
+     * @deprecated use getTabById instead
      * @param  string                          $id
      * @return \tkuska\RibbonBundle\Ribbon\Tab
      */
     public function getTabByName($id)
     {
+        return $this->getTabById($id);
+    }
+    
+    /**
+     *
+     * @param  string                          $id
+     * @return \tkuska\RibbonBundle\Ribbon\Tab
+     */
+    public function getTabById($id)
+    {
+        if(!$this->tabs[$id]){
+            throw new TabNotFoundException(sprintf('Cannot find tab "%s"', $id));
+        }
         return $this->tabs[$id];
     }
 
@@ -141,7 +164,7 @@ class Ribbon
     public function getBackstage()
     {           
         if(!$this->backstage){
-            throw new \Exception('There is no backstage for this ribbon defined');
+            throw new TabNotFoundException('There is no backstage defined for this ribbon.');
         }
         
         return $this->backstage;        
