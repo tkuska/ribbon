@@ -1,6 +1,6 @@
 <?php
 
-namespace kusior\RibbonBundle\Ribbon;
+namespace tkuska\RibbonBundle\Ribbon;
 
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 

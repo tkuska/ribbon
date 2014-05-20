@@ -1,8 +1,8 @@
 <?php
 
-namespace kusior\RibbonBundle\Twig\Extension;
+namespace tkuska\RibbonBundle\Twig\Extension;
 
-use kusior\RibbonBundle\Ribbon\Ribbon;
+use tkuska\RibbonBundle\Ribbon\Ribbon;
 
 class RibbonExtension extends \Twig_Extension
 {
@@ -41,7 +41,7 @@ class RibbonExtension extends \Twig_Extension
     public function printRibbon ()
     {
         return $this->environment->render(
-            "kusiorRibbonBundle:Ribbon:menu.html.twig", array('ribbon' => $this->ribbon)
+            "tkuskaRibbonBundle:Ribbon:menu.html.twig", array('ribbon' => $this->ribbon)
         );
     }
 
@@ -52,6 +52,6 @@ class RibbonExtension extends \Twig_Extension
      */
     public function getName()
     {
-        return 'kusior_ribbon';
+        return 'tkuska_ribbon';
     }
 }

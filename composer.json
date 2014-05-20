@@ -1,5 +1,5 @@
 {
-    "name": "kusior/ribbon-bundle",
+    "name": "tkuska/ribbon-bundle",
     "type": "symfony-bundle",
     "description": "Ribbon Bundle for symfony2 framework",
     "keywords": ["ribbon", "menu"],
@@ -17,8 +17,8 @@
         "symfony/framework-bundle": ">=2.1"
     },
     "autoload": {
-        "psr-0": { "kusior\\RibbonBundle": "" }
+        "psr-0": { "tkuska\\RibbonBundle": "" }
     },
     "minimum-stability": "dev",
-    "target-dir": "kusior/RibbonBundle"
+    "target-dir": "tkuska/RibbonBundle"
 }

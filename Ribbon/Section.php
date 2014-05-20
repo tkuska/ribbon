@@ -1,6 +1,6 @@
 <?php
 
-namespace kusior\RibbonBundle\Ribbon;
+namespace tkuska\RibbonBundle\Ribbon;
 
 class Section
 {
@@ -13,7 +13,7 @@ class Section
     /**
      *
      * @param  string                              $name
-     * @return \kusior\RibbonBundle\Ribbon\Section
+     * @return \tkuska\RibbonBundle\Ribbon\Section
      */
     public function __construct($name)
     {
@@ -27,7 +27,7 @@ class Section
      *
      * @param  string                             $name
      * @param  array                              $options
-     * @return \kusior\RibbonBundle\Ribbon\Button
+     * @return \tkuska\RibbonBundle\Ribbon\Button
      */
     public function createButton($name, array $options = array())
     {
@@ -40,8 +40,8 @@ class Section
 
     /**
      *
-     * @param  \kusior\RibbonBundle\Ribbon\Button  $button
-     * @return \kusior\RibbonBundle\Ribbon\Section
+     * @param  \tkuska\RibbonBundle\Ribbon\Button  $button
+     * @return \tkuska\RibbonBundle\Ribbon\Section
      */
     public function addButton(Button $button)
     {
@@ -64,7 +64,7 @@ class Section
     /**
      *
      * @param  string                              $name
-     * @return \kusior\RibbonBundle\Ribbon\Section
+     * @return \tkuska\RibbonBundle\Ribbon\Section
      */
     public function setName($name)
     {
@@ -85,7 +85,7 @@ class Section
     /**
      *
      * @param  string                             $name
-     * @return \kusior\RibbonBundle\Ribbon\Button
+     * @return \tkuska\RibbonBundle\Ribbon\Button
      */
     public function getButton($name)
     {
@@ -94,8 +94,8 @@ class Section
 
     /**
      *
-     * @param  \kusior\RibbonBundle\Ribbon\Tab     $tab
-     * @return \kusior\RibbonBundle\Ribbon\Section
+     * @param  \tkuska\RibbonBundle\Ribbon\Tab     $tab
+     * @return \tkuska\RibbonBundle\Ribbon\Section
      */
     public function setTab(Tab $tab)
     {
@@ -106,7 +106,7 @@ class Section
 
     /**
      *
-     * @return \kusior\RibbonBundle\Ribbon\Tab
+     * @return \tkuska\RibbonBundle\Ribbon\Tab
      */
     public function getTab()
     {

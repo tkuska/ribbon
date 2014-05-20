@@ -1,6 +1,6 @@
 <?php
 
-namespace kusior\RibbonBundle\Ribbon;
+namespace tkuska\RibbonBundle\Ribbon;
 
 class Button
 {
@@ -42,7 +42,7 @@ class Button
      *
      * @param  string                             $name
      * @param  array                              $options
-     * @return \kusior\RibbonBundle\Ribbon\Button
+     * @return \tkuska\RibbonBundle\Ribbon\Button
      */
     public function __construct($name, array $options=array())
     {
@@ -79,7 +79,7 @@ class Button
     /**
      *
      * @param  string                             $image
-     * @return \kusior\RibbonBundle\Ribbon\Button
+     * @return \tkuska\RibbonBundle\Ribbon\Button
      */
     public function setImage($image)
     {
@@ -160,7 +160,7 @@ class Button
     /**
      *
      * @param  string                             $state
-     * @return \kusior\RibbonBundle\Ribbon\Button
+     * @return \tkuska\RibbonBundle\Ribbon\Button
      */
     public function setState($state)
     {
@@ -208,7 +208,7 @@ class Button
     /**
      *
      * @param  array                              $elementid
-     * @return \kusior\RibbonBundle\Ribbon\Button
+     * @return \tkuska\RibbonBundle\Ribbon\Button
      */
     public function setParameters(array $elementid = array())
     {
@@ -228,7 +228,7 @@ class Button
 
     /**
      *
-     * @return \kusior\RibbonBundle\Ribbon\Section
+     * @return \tkuska\RibbonBundle\Ribbon\Section
      */
     public function getSection()
     {
@@ -237,8 +237,8 @@ class Button
 
     /**
      *
-     * @param  \kusior\RibbonBundle\Ribbon\Section $section
-     * @return \kusior\RibbonBundle\Ribbon\Button
+     * @param  \tkuska\RibbonBundle\Ribbon\Section $section
+     * @return \tkuska\RibbonBundle\Ribbon\Button
      */
     public function setSection(Section $section)
     {

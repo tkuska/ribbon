@@ -1,6 +1,6 @@
 <?php
 
-namespace kusior\RibbonBundle\Ribbon;
+namespace tkuska\RibbonBundle\Ribbon;
 
 class Tab
 {
@@ -25,7 +25,7 @@ class Tab
      * @param  string                          $id
      * @param  string                          $name
      * @param  array                           $options
-     * @return \kusior\RibbonBundle\Ribbon\Tab
+     * @return \tkuska\RibbonBundle\Ribbon\Tab
      */
     public function __construct($id, $name, array $options=array())
     {
@@ -49,7 +49,7 @@ class Tab
      *
      * @param  string                              $name
      * @param  array                               $options
-     * @return \kusior\RibbonBundle\Ribbon\Section
+     * @return \tkuska\RibbonBundle\Ribbon\Section
      */
     public function createSection($name, array $options=array())
     {
@@ -62,8 +62,8 @@ class Tab
 
     /**
      *
-     * @param  \kusior\RibbonBundle\Ribbon\Section $section
-     * @return \kusior\RibbonBundle\Ribbon\Section
+     * @param  \tkuska\RibbonBundle\Ribbon\Section $section
+     * @return \tkuska\RibbonBundle\Ribbon\Section
      */
     public function addSection(Section $section)
     {
@@ -95,7 +95,7 @@ class Tab
     /**
      *
      * @param  boolean                         $active
-     * @return \kusior\RibbonBundle\Ribbon\Tab
+     * @return \tkuska\RibbonBundle\Ribbon\Tab
      */
     public function setActive($active = true)
     {
@@ -138,7 +138,7 @@ class Tab
     /**
      *
      * @param  int                             $index
-     * @return \kusior\RibbonBundle\Ribbon\Tab
+     * @return \tkuska\RibbonBundle\Ribbon\Tab
      */
     public function setIndex($index)
     {
@@ -159,7 +159,7 @@ class Tab
     /**
      *
      * @param  string                              $name
-     * @return \kusior\RibbonBundle\Ribbon\Section
+     * @return \tkuska\RibbonBundle\Ribbon\Section
      */
     public function getSection($name)
     {
@@ -168,7 +168,7 @@ class Tab
 
     /**
      *
-     * @return \kusior\RibbonBundle\Ribbon\Ribbon
+     * @return \tkuska\RibbonBundle\Ribbon\Ribbon
      */
     public function getRibbon()
     {
@@ -177,8 +177,8 @@ class Tab
 
     /**
      *
-     * @param  \kusior\RibbonBundle\Ribbon\Ribbon $ribbon
-     * @return \kusior\RibbonBundle\Ribbon\Tab
+     * @param  \tkuska\RibbonBundle\Ribbon\Ribbon $ribbon
+     * @return \tkuska\RibbonBundle\Ribbon\Tab
      */
     public function setRibbon(Ribbon $ribbon)
     {

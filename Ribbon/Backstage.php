@@ -1,14 +1,10 @@
 <?php
 
-namespace kusior\RibbonBundle\Ribbon;
+namespace tkuska\RibbonBundle\Ribbon;
 
 class Backstage
 {
     private $name;
-
-    private $route = '#';
-
-    private $selected = 0;
 
     private $text;
 
@@ -17,10 +13,9 @@ class Backstage
     /**
      *
      * @param  string                                $name
-     * @param  array                                 $options
-     * @return \kusior\RibbonBundle\Ribbon\Backstage
+     * @return \tkuska\RibbonBundle\Ribbon\Backstage
      */
-    public function __construct($name ='Backstage', array $options=array())
+    public function __construct($name ='Backstage')
     {
         $this->name = $name;
         $this->buttons = new \Doctrine\Common\Collections\ArrayCollection();
@@ -32,7 +27,7 @@ class Backstage
      *
      * @param  string                                $name
      * @param  array                                 $options
-     * @return \kusior\RibbonBundle\Ribbon\Backstage
+     * @return \tkuska\RibbonBundle\Ribbon\Backstage
      */
     public function createButton($name, array $options=array())
     {
@@ -43,8 +38,8 @@ class Backstage
 
     /**
      *
-     * @param  \kusior\RibbonBundle\Ribbon\Button    $button
-     * @return \kusior\RibbonBundle\Ribbon\Backstage
+     * @param  \tkuska\RibbonBundle\Ribbon\Button    $button
+     * @return \tkuska\RibbonBundle\Ribbon\Backstage
      */
     public function addButton(Button $button)
     {

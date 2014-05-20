@@ -4,17 +4,17 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="kusior.ribbon.class">kusior\RibbonBundle\Ribbon\Ribbon</parameter>
+        <parameter key="tkuska.ribbon.class">tkuska\RibbonBundle\Ribbon\Ribbon</parameter>
     </parameters>
     <services>
-        <service id="kusior.ribbon" class="%kusior.ribbon.class%" />
-        <service id="kusior.menu_prepare.listener" class="%kusior_ribbon.listener_class%">
+        <service id="tkuska.ribbon" class="%tkuska.ribbon.class%" />
+        <service id="tkuska.menu_prepare.listener" class="%tkuska_ribbon.listener_class%">
             <tag name="kernel.event_listener" event="kernel.controller" method="initializeRibbon" />
-            <argument type="service" id="kusior.ribbon" />
+            <argument type="service" id="tkuska.ribbon" />
             <argument type="service" id="security.context" />
         </service>
-        <service id="twig.extension.ribbon" class="%kusior_ribbon.extension_class%" public="true">
-            <argument type="service" id="kusior.ribbon" />
+        <service id="twig.extension.ribbon" class="%tkuska_ribbon.extension_class%" public="true">
+            <argument type="service" id="tkuska.ribbon" />
             <argument type="service" id="service_container" />
             <tag name="twig.extension" />
         </service>

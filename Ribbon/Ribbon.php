@@ -1,6 +1,6 @@
 <?php
 
-namespace kusior\RibbonBundle\Ribbon;
+namespace tkuska\RibbonBundle\Ribbon;
 
 class Ribbon
 {
@@ -12,8 +12,8 @@ class Ribbon
 
     /**
      *
-     * @param  string                             $name
-     * @return \kusior\RibbonBundle\Ribbon\Ribbon
+     * @param  string $name
+     * @return \tkuska\RibbonBundle\Ribbon\Ribbon
      */
     public function __construct($name = '')
     {
@@ -25,25 +25,27 @@ class Ribbon
     }
 
     /**
-     *
-     * @param  \kusior\RibbonBundle\Ribbon\Tab $tab
-     * @return \kusior\RibbonBundle\Ribbon\Tab
+     * Adds existing tab to ribbon
+     * 
+     * @param  \tkuska\RibbonBundle\Ribbon\Tab $tab
+     * @return \tkuska\RibbonBundle\Ribbon\Tab
      */
     public function addTab(Tab $tab)
     {
         $tab->setRibbon($this);
         $tab->setIndex(count($this->tabs));
-        $this->tabs[$id] = $tab;
+        $this->tabs[$tab->getId()] = $tab;
 
-        return $this->tabs[$id];
+        return $this->tabs[$tab->getId()];
     }
 
     /**
-     *
+     * Creates new tab
+     * 
      * @param  string                          $id
      * @param  string                          $name
      * @param  array                           $options
-     * @return \kusior\RibbonBundle\Ribbon\Tab
+     * @return \tkuska\RibbonBundle\Ribbon\Tab
      */
     public function createTab($id, $name, array $options=array())
     {
@@ -57,10 +59,11 @@ class Ribbon
     }
 
     /**
-     *
+     * 
      * @param  string                             $name
      * @param  array                              $options
-     * @return \kusior\RibbonBundle\Ribbon\Ribbon
+     * @deprecated Use setBackstage()->createButton() instead
+     * @return \tkuska\RibbonBundle\Ribbon\Ribbon
      */
     public function addBackstageButton($name, array $options=array())
     {
@@ -76,10 +79,13 @@ class Ribbon
     /**
      *
      * @param  string                             $id
-     * @return \kusior\RibbonBundle\Ribbon\Ribbon
+     * @return \tkuska\RibbonBundle\Ribbon\Ribbon
      */
     public function setActiveTab($id)
     {
+        if(!$this->tabs[$id]){
+            throw new Exception(sprintf('Cannot find tab "%s"', $id));
+        }
         $this->tabs[$id]->setActive();
 
         return $this;
@@ -88,7 +94,7 @@ class Ribbon
     /**
      *
      * @param  string                          $id
-     * @return \kusior\RibbonBundle\Ribbon\Tab
+     * @return \tkuska\RibbonBundle\Ribbon\Tab
      */
     public function getTabByName($id)
     {
@@ -106,9 +112,20 @@ class Ribbon
 
     /**
      *
+     * @return string
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+        
+        return $this;
+    }
+    
+    /**
+     *
      * @param  string                             $name
      * @param  array                              $options
-     * @return \kusior\RibbonBundle\Ribbon\Ribbon
+     * @return \tkuska\RibbonBundle\Ribbon\Ribbon
      */
     public function setBackstage($name, $options = array())
     {
@@ -119,11 +136,15 @@ class Ribbon
 
     /**
      *
-     * @return \kusior\RibbonBundle\Ribbon\Backstage
+     * @return \tkuska\RibbonBundle\Ribbon\Backstage
      */
     public function getBackstage()
-    {
-        return $this->backstage;
+    {           
+        if(!$this->backstage){
+            throw new \Exception('There is no backstage for this ribbon defined');
+        }
+        
+        return $this->backstage;        
     }
 
     /**
@@ -139,7 +160,7 @@ class Ribbon
      *
      * @return boolean
      */
-    public function getHasBackstage()
+    public function hasBackstage()
     {
         if ($this->backstage) {
             return true;
