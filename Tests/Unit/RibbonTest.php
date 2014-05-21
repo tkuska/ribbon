@@ -19,7 +19,7 @@ class RibbonTest extends \PHPUnit_Framework_TestCase
     }    
     
     /**
-     * @expectedException tkuska\RibbonBundle\Exception\TabNotFoundException
+     * @expectedException tkuska\RibbonBundle\Exception\ElementNotFoundException
      */
     public function testActiveTabException(){
         $ribbon = new Ribbon();
@@ -57,7 +57,7 @@ class RibbonTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException tkuska\RibbonBundle\Exception\TabAlreadyExistsException
+     * @expectedException tkuska\RibbonBundle\Exception\ElementAlreadyExistsException
      */
     public function testDuplicateTabIdsException(){
         $ribbon = new Ribbon();
@@ -70,7 +70,7 @@ class RibbonTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException tkuska\RibbonBundle\Exception\TabAlreadyExistsException
+     * @expectedException tkuska\RibbonBundle\Exception\ElementAlreadyExistsException
      */
     public function testDuplicateTabIds2Exception(){
         $ribbon = new Ribbon();  
@@ -80,9 +80,9 @@ class RibbonTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException tkuska\RibbonBundle\Exception\TabNotFoundException
+     * @expectedException tkuska\RibbonBundle\Exception\ElementNotFoundException
      */
-    public function testTabNotFoundException(){
+    public function testElementNotFoundException(){
         $ribbon = new Ribbon();  
         
         $ribbon->createTab('tab1', 'Tab1');
@@ -113,7 +113,7 @@ class RibbonTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * @expectedException tkuska\RibbonBundle\Exception\TabNotFoundException
+     * @expectedException tkuska\RibbonBundle\Exception\ElementNotFoundException
      */
     public function testBackStageNotFoundException(){
         $ribbon = new Ribbon();

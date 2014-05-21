@@ -2,6 +2,9 @@
 
 namespace tkuska\RibbonBundle\Ribbon;
 
+use tkuska\RibbonBundle\Exception\ElementNotFoundException;
+use tkuska\RibbonBundle\Exception\ElementAlreadyExistsException;
+
 class Tab
 {
     private $ribbon;
@@ -18,8 +21,6 @@ class Tab
 
     private $id;
 
-    private $parameters;
-
     /**
      *
      * @param  string                          $id
@@ -31,7 +32,7 @@ class Tab
     {
         $this->id = $id;
         $this->name = $name;
-        $this->section = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->sections = new \Doctrine\Common\Collections\ArrayCollection();
 
         return $this;
     }
@@ -53,6 +54,9 @@ class Tab
      */
     public function createSection($name, array $options=array())
     {
+        if($this->sections[$name]){
+            throw new ElementAlreadyExistsException(sprintf('Section "%s" already exists for tab "%s"', $name, $this->name));
+        }
         $this->sections[$name] = new Section($name, $options);
 
         $this->sections[$name]->setTab($this);
@@ -67,6 +71,9 @@ class Tab
      */
     public function addSection(Section $section)
     {
+        if($this->sections[$section->getName()]){
+            throw new ElementAlreadyExistsException(sprintf('Section "%s" already exists for tab "%s"', $section->getName(), $this->name));
+        }
         $section->setTab($this);
 
         $this->sections[$section->getName()] = $section;
@@ -100,6 +107,9 @@ class Tab
     public function setActive($active = true)
     {
         if ($active === true) {
+            if(!$this->ribbon){
+                throw new ElementNotFoundException('Ribbon not found, tab is not attached to any ribbon.');
+            }
             foreach ($this->ribbon->getTabs() as $id => $tab) {
                 if ($id == $this->id) {
                     continue;
@@ -124,6 +134,17 @@ class Tab
         } else {
             return false;
         }
+    }
+    
+    /**
+     *
+     * @return string
+     */
+    public function setRoute($route)
+    {        
+        $this->route = $route;
+        
+        return $this;
     }
 
     /**
@@ -163,6 +184,9 @@ class Tab
      */
     public function getSection($name)
     {
+        if(!$this->sections[$name]){
+            throw new ElementNotFoundException(sprintf('Section "%s" not found.', $name));
+        }
         return $this->sections[$name];
     }
 

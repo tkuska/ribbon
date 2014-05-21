@@ -2,6 +2,9 @@
 
 namespace tkuska\RibbonBundle\Ribbon;
 
+use tkuska\RibbonBundle\Exception\ElementNotFoundException;
+use tkuska\RibbonBundle\Exception\ElementAlreadyExistsException;
+
 class Section
 {
     private $name;
@@ -31,6 +34,9 @@ class Section
      */
     public function createButton($name, array $options = array())
     {
+        if($this->buttons[$name]){
+            throw new ElementAlreadyExistsException(sprintf('Button "%s" already exists for section "%s"', $name, $this->name));
+        }
         $this->buttons[$name] = new Button($name, $options);
 
         $this->buttons[$name]->setSection($this);
@@ -45,6 +51,9 @@ class Section
      */
     public function addButton(Button $button)
     {
+        if($this->buttons[$button->getName()]){
+            throw new ElementAlreadyExistsException(sprintf('Button "%s" already exists for section "%s"', $button->getName(), $this->name));
+        }
         $button->setSection($this);
 
         $this->buttons[$button->getName()] = $button;
@@ -89,6 +98,9 @@ class Section
      */
     public function getButton($name)
     {
+        if(!$this->buttons[$name]){
+            throw new ElementNotFoundException(sprintf('Button "%s" not found.', $name));
+        }
         return $this->buttons[$name];
     }
 

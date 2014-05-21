@@ -2,8 +2,8 @@
 
 namespace tkuska\RibbonBundle\Ribbon;
 
-use tkuska\RibbonBundle\Exception\TabAlreadyExistsException;
-use tkuska\RibbonBundle\Exception\TabNotFoundException;
+use tkuska\RibbonBundle\Exception\ElementAlreadyExistsException;
+use tkuska\RibbonBundle\Exception\ElementNotFoundException;
 
 class Ribbon
 {
@@ -36,7 +36,7 @@ class Ribbon
     public function addTab(Tab $tab)
     {
         if($this->tabs[$tab->getId()]){
-            throw new TabAlreadyExistsException(sprintf('Tab "%s" already exists.', $tab->getId()));
+            throw new ElementAlreadyExistsException(sprintf('Tab "%s" already exists.', $tab->getId()));
         }
         
         $tab->setRibbon($this);
@@ -57,7 +57,7 @@ class Ribbon
     public function createTab($id, $name, array $options=array())
     {
         if($this->tabs[$id]){
-            throw new TabAlreadyExistsException(sprintf('Tab "%s" already exists.', $id));
+            throw new ElementAlreadyExistsException(sprintf('Tab "%s" already exists.', $id));
         }
         
         $tab =new Tab($id, $name, $options);
@@ -94,7 +94,7 @@ class Ribbon
     public function setActiveTab($id)
     {
         if(!$this->tabs[$id]){
-            throw new TabNotFoundException(sprintf('Cannot find tab "%s"', $id));
+            throw new ElementNotFoundException(sprintf('Cannot find tab "%s"', $id));
         }
         $this->tabs[$id]->setActive();
 
@@ -119,7 +119,7 @@ class Ribbon
     public function getTabById($id)
     {
         if(!$this->tabs[$id]){
-            throw new TabNotFoundException(sprintf('Cannot find tab "%s"', $id));
+            throw new ElementNotFoundException(sprintf('Cannot find tab "%s"', $id));
         }
         return $this->tabs[$id];
     }
@@ -164,7 +164,7 @@ class Ribbon
     public function getBackstage()
     {           
         if(!$this->backstage){
-            throw new TabNotFoundException('There is no backstage defined for this ribbon.');
+            throw new ElementNotFoundException('There is no backstage defined for this ribbon.');
         }
         
         return $this->backstage;        
