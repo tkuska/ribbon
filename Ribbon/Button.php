@@ -57,9 +57,6 @@ class Button
         if (isset($options['hot'])) {
             $this->hot = $options['hot'];
         }
-        if (isset($options['desc'])) {
-            $this->help=$options['desc'];
-        }
         if (isset($options['route'])) {
             $this->route = $options['route'];
         }
@@ -71,9 +68,27 @@ class Button
         }
         if (isset($options['class'])) {
             $this->class = $options['class'];
+        }        
+        if (isset($options['type'])) {
+            $this->type = $options['type'];
+        }    
+        if (isset($options['id'])) {
+            $this->id = $options['id'];
         }
 
         return $this;
+    }
+    
+    
+    public function setId($id){
+        $this->id = $id;
+        
+        return $this;
+    }
+    
+    
+    public function getId(){
+        return $this->id;
     }
 
     /**
@@ -125,25 +140,7 @@ class Button
      *
      * @return string
      */
-    public function getLabel()
-    {
-        return $this->name;
-    }
-
-    /**
-     *
-     * @return string
-     */
     public function getHelp()
-    {
-        return $this->help;
-    }
-
-    /**
-     *
-     * @return string
-     */
-    public function getDescription()
     {
         return $this->help;
     }
@@ -191,15 +188,6 @@ class Button
      *
      * @return string
      */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     *
-     * @return string
-     */
     public function getName()
     {
         return $this->name;
@@ -224,6 +212,26 @@ class Button
     public function getParameters()
     {
         return $this->parameters;
+    }
+    
+    /**
+     *
+     * @return Button
+     */
+    public function setClass($class)
+    {
+        $this->class = $class;
+        
+        return $this;
+    }
+    
+    /**
+     *
+     * @return string
+     */
+    public function getClass()
+    {
+        return $this->class;
     }
 
     /**

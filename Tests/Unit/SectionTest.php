@@ -46,6 +46,7 @@ class SectionTest extends \PHPUnit_Framework_TestCase
         $this->assertContains($button, $section->getButtons());
         $this->assertCount(3, $section->getButtons());
         $this->assertEquals($button, $section->getButton('button3'));
+        $this->assertEquals($button->getSection(), $section);
     }
     
     /**
