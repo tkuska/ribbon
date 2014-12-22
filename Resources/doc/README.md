@@ -1,0 +1,1 @@
+[![Build Status](https://travis-ci.org/tkuska/ribbon.svg?branch=master)](https://travis-ci.org/tkuska/ribbon)
